@@ -14,9 +14,9 @@ import datetime
 from VTPR import VTPR
 from pandas import read_csv, DataFrame
 import time
-import os
+##import os
 
-os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+#os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 
 EOS_app = Blueprint("EOS_app", __name__, static_folder = "static", template_folder = "templates")
