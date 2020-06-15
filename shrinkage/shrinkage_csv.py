@@ -139,17 +139,6 @@ def predict():
     Data = Data[['Shrinkage Factor','Pressure', 'LV % IC4',
                             'LV % NC4','C7+ Specific Gravity','Light_Frac','Heavy_Frac','API_grav']]
 
-    ##converting to float
-    Data = Data.select_dtypes(include=[np.float])
-    numeric_feats = Data.dtypes[Data.dtypes == "float"].index.values
-    Data = pd.DataFrame(Data, columns = numeric_feats)
-
-    ##converting to float
-    Data = Data.select_dtypes(include=[np.float])
-    numeric_feats = Data.dtypes[Data.dtypes == "float"].index.values
-    Data = pd.DataFrame(Data, columns = numeric_feats)
-
-
     X = Data.drop('Shrinkage Factor', axis=1)
     y = Data['Shrinkage Factor']
 
