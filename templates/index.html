@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset = "UTF-8">
+    <meta name = "viewport" content="width=device-width, inital-scale = 1.0">
+    <meta http-equiv = "X-UA-Compatible" content= "ie=edge">
+    <title> SureSim </title>
+    <link rel="icon" type = "image/gif/png" href="https://drive.google.com/uc?id=1dLHjkWz85HeuGj76ciNmqml8TxOAcsS-">
+    <link rel = "stylesheet"  type = "text/css" href ="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://kit.fontawesome.com/26fb797609.js" crossorigin="anonymous"></script>
+  
+
+</head>
+<body>
+
+                             <!-- Nav Start -->
+    <nav>
+        <div class = "logo">
+            <img src = "https://drive.google.com/uc?id=1dLHjkWz85HeuGj76ciNmqml8TxOAcsS-", style="width: 50px; height: 50px;">
+            <h4>   SureSim </h4>
+
+        </div>
+        <div class = "dropdown">
+            <ul class = "nav-links"> 
+                <li>  <a href = "{{url_for('main')}}"> Home </a>  </li>
+                <li>  <a href = "{{url_for('EOS_app.home')}}"> Separator Simulator </a> </li>
+                <li>  <a href = "{{url_for('scaling_app.home')}}"> Scaling Calcuator </a> </li>
+                <li>  <a href = "{{url_for('shrinkage_csv.home')}}"> Shrinkage Calculator </a> </li>
+                <li>  <a href = "{{url_for('main')}}"> Decline Curve Model </a> </li>
+            </ul>
+        </div>
+
+        <div class="mobile">
+            <button class = "nav-btn">
+            <div class = "line1"></div>
+            <div class = "line1"></div>
+            <div class = "line3"></div>
+            </button>
+         </div>
+    </nav>
+
+
+                <!--  slider start -->
+    <div class="row">
+    <div class = "slider">
+        <div class="slide current">
+        <div class="content">
+            <h1> Shrinkage Calculator </h1>
+            <p>  Calculate shrinkage based on the volume
+                 translated Peng-Robinson Equation of state
+                and a deep neural net trained on real data  </p>
+        </div>
+        </div>
+            <div class="slide">
+            <div class="content">
+                <h1> Scaling Calculator </h1>
+                <p>  Calculate ccaling indicies for use with 
+                    the provided scaling water analysis </p>
+        </div>
+        </div>
+            <div class="slide">
+            <div class="content">
+                <h1> Molecular Weight Model</h1>
+                <p>  Estimate molecular weight based on an
+                     ensemble machine learning algorithm  </p>
+        </div>
+        </div>
+        <div class="slide">
+            <div class="content">
+                <h1> Reserves Estimation/Decline Curve Analysis</h1>
+                <p>  Estimate reserves with state of the art machine learning models  </p>
+        </div>
+        </div>               
+    </div>
+    <div class = "buttons">
+        <button id = "prev"><i class="fas fa-arrow-left"> </i></button>
+        <button id = "next"><i class="fas fa-arrow-right"> </i></button>
+    </div>
+    </div>
+
+
+
+    <!--  Animate on Scroll  -->
+
+    <main class = "container">
+        <section class = "card" data-aos = "fade-left">
+                <img src = "https://drive.google.com/uc?id=1uMMhJT3_utE6zGy70k5zkA9vq8iULD1A" alt="ML art">
+                <div>
+                    <h3> Machine Learning </h3>
+                    <p> Using machine learning we deliver the most cutting edge
+                         and precise simulations. We use REAL data to make our predictions. </p>
+                <a href ="{{url_for('EOS_app.home')}}" class ="btn"> Learn More </a>
+                </div>          
+            </section>
+    </main>
+
+    <main class = "container">
+        <section class = "card" data-aos = "fade-right">
+                <img src = "https://drive.google.com/uc?id=19K8y49h9HY_qCPmxjr5frRtvKferIIY2" alt="Data Art">
+                <div>
+                    <h3> EOS Modeling </h3>
+                    <p> By incorporating the most advanced volume translated Peng-Robinsion equations of state
+                        we can accurately simulate phase properites.</p>
+                <a href ="{{url_for('EOS_app.home')}}" class ="btn"> Learn More </a>
+                </div>          
+            </section>
+    </main>
+
+    <main class = "container">
+        <section class = "card" data-aos = "fade-left">
+                <img src = "https://drive.google.com/uc?id=1tbchRdoKtjGF9c5Gd5ovraq3sN8fe58f" alt="fractal">
+                <div>
+                    <h3> Integration </h3>
+                    <p> Seemless integration with SureChem. Have all of your data
+                         at the tip of your fingers.  </p>
+                <a href ='#' class ="btn"> Learn More </a>
+                </div>          
+            </section>
+    </main>
+
+
+    <script src="{{ url_for('static', filename='nav.js')}}"> </script>
+    <script src="{{ url_for('static', filename='main.js')}}"> </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+          offset: 200, 
+          durration: 800
+      });
+    </script>
+</body>
+
+<footer>
+    <div class = "footer">
+    <p>Authors: Preston Blackburn, Ben Bagby<br>
+        Email us with any questions at: 
+    <a class = "email" href="preston.blackburn@spl-inc.com"> preston.blackburn@spl-inc.com</a>
+    or
+    <a class = "email" href="ben.bagby@spl-inc.com"> ben.bagby@spl-inc.com </a>
+    </p>
+    </div>
+</footer>
+
+</html>

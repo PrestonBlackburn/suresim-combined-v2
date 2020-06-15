@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html >
+
+<head> 
+
+    <meta charset="UTF-8">
+    <meta name = "viewport" content="width=device-width, inital-scale = 1.0">
+    <meta http-equiv = "X-UA-Compatible" content= "ie=edge">
+    <title>Phase Calculator</title>
+
+    <link rel="icon" type = "image/gif/png" href="https://drive.google.com/uc?id=1dLHjkWz85HeuGj76ciNmqml8TxOAcsS-">
+    <!-- <link rel = "stylesheet" href = 'style.css'>   only use when testing html-->
+    <link rel = "stylesheet" type = "text/css" href="{{ url_for('EOS_app.static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <script src="https://kit.fontawesome.com/26fb797609.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+
+    <!-- Nav Start -->
+    <nav>
+    <div class = "logo">
+        <img src = "https://drive.google.com/uc?id=1dLHjkWz85HeuGj76ciNmqml8TxOAcsS-", style="width: 50px; height: 50px;">
+        <h4>   SureSim </h4>
+
+    </div>
+    <ul class = "nav-links"> 
+        <li>  <a href = "{{url_for('main')}}"> Home </a>  </li>
+        <li>  <a href = "{{url_for('EOS_app.home')}}"> Separator Simulator </a> </li>
+        <li>  <a href = "{{url_for('scaling_app.home')}}"> Scaling Calcuator </a> </li>
+        <li>  <a href = "{{url_for('shrinkage_csv.home')}}"> Shrinkage Calculator </a> </li>
+        <li>  <a href = "{{url_for('main')}}"> Decline Curve Model </a> </li>
+    </ul>
+
+    <div class="mobile">
+        <div class = "line1"></div>
+        <div class = "line1"></div>
+        <div class = "line3"></div>
+        </div>
+    </nav>
+                        
+                        
+
+    <div class = "head">
+        <h1>
+            Separator Simulator
+        </h1>
+    </div>
+
+
+
+    <main class = "container">
+        <form action="{{ url_for('EOS_app.predict')}}" method="post">
+
+            <h2>
+                Separator Input
+            </h2> 
+        
+        <div class = "input">
+            <table class="table1">
+
+
+            <thead>
+                <tr>
+                    <th>Input Values Below:</th>
+                    <th>Recomended Value Ranges:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" name="id" placeholder="Sample Name" required="required" /></td>
+                    <td>200 Characters Max</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="SG" placeholder="Specific Gravity" required="required" /></td>
+                    <td>Specific Gravity: 0.7 - 0.8</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="P" placeholder="Pressure (PSIG)" required="required" /></td>
+                    <td>Pressure: 0.0 - 1200</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="T" placeholder="Temperature (F)" required="required" /></td>
+                    <td>Temperature: 0.0 - 500</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="C7+ SG" placeholder="C7+ Specific Gravity" required="required" /></td>
+                    <td>C7+ SG: 0.7 - 0.85</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="C7+ MW" placeholder="C7+ Molecular Weight" required="required" /></td>
+                    <td>C7+ MW: 100-200</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="C1" placeholder="Methane (LV%)" required="required" /></td>
+                    <td>C1: 0.0 - 5.0</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="C2" placeholder="Ethane (LV%)" required="required" /></td>
+                    <td>C2: 0.0 - 5.0</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="C3" placeholder="Propane (LV%)" required="required" /></td>
+                    <td>C3: 0.0 - 8.0</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="iC4" placeholder="Isobutane (LV%)" required="required" /></td>
+                    <td>iC4: 0.0 - 5.0</td>
+                </tr> 
+                <tr>
+                    <td><input type="text" name="C4" placeholder="n-Butane (LV%)" required="required" /></td>
+                    <td>C4: 0.0 - 8.0</td>
+                </tr>   
+                <tr>
+                    <td><input type="text" name="iC5" placeholder="Isopentane (LV%)" required="required" /></td>
+                    <td>iC5: 0.0 - 8.0</td>
+                </tr>       
+                <tr>
+                    <td><input type="text" name="C5" placeholder="n-Pentane (LV%)" required="required" /></td>
+                    <td>C5: 0.0 - 8.0</td>
+                </tr> 
+                <tr>
+                    <td><input type="text" name="C6" placeholder="Hexanes (LV%)" required="required" /></td>
+                    <td>C6: 1.0 - 15.0</td>
+                </tr>     
+                <tr>
+                    <td><input type="text" name="C7" placeholder="Heptanes Plus (LV%)" required="required" /></td>
+                    <td>C7: 65.0 - 85.0</td>
+                </tr>      
+                <tr>
+                    <td><input type="text" name="CO2" placeholder="Carbon Dioxide (LV%)" required="required" /></td>
+                    <td>CO2: 0.0 - 0.5</td>
+                </tr>   
+                <tr>
+                    <td><input type="text" name="N2" placeholder="Nitrogen (LV%)" required="required" /></td>
+                    <td>N2: 0.0 - 0.5</td>
+                </tr>                                                      
+            </tbody>
+            </table>
+
+            <br>
+            <button type="submit" class="btn btn-primary">
+                Calculate
+            </button>
+            </div>
+
+        </form>
+            <div class = 'sep'>
+                <!-- separator picture-->
+                <img src="https://drive.google.com/uc?id=1CD3rk8tvvQLsi9tYNMtLvN1TC7MPdrQq", style="width: 350px; height: 900px;"> 
+            </div>
+
+            <div class = 'output'>
+                <div class = 'gas-out'>
+                    <h2>
+                        Gas Output
+                    </h2>
+                    {{ table2 | safe }}
+                </div>
+                <div class ="empty">
+                    
+                </div>
+    
+                <div class = 'oil-out'> 
+                    <h2>
+                        Oil Output
+                    </h2>
+                    {{ table1 | safe }}
+                </div>
+            </div>
+
+    </main>
+
+    <div class = "summary" data-aos = "fade-in">
+        <h3>
+            Shrinkage Values
+        </h3>
+        <br>
+
+        <div class = "shrink_3">
+            {{ table3 | safe }}
+            <br>
+            Separator Conditions:
+            <br>
+            Temp = 60 F
+            <br>
+            Pressure = 0 psig
+        </div>
+    </div>   
+
+    <div class = "Description" data-aos = "fade-in">
+    <h3> Description </h3>
+        <p> 
+        This Model uses a feed forward neural network to tune the Volume Translated Peng-Robinson (VTPR) Equation of state (EOS)
+        based on measured data to find shrinkage. This has shown to be more accurate than using either the VTPR-EOS or 
+        neural network alone. An example of the neural network archetecture can be seen below:
+        </p>
+
+        <!-- NN picture-->
+        <img src="https://lh3.googleusercontent.com/6vFh7mhJ57wbUbsN442jBBZiCzzRck3O0I6Yl7W5awpikeVvc9vyRQgoqKISAYNtV80KKR7xosNQ23M92_e8NEfr_G5a_KsG7uKj9FcDoJjkMSRJ_jIr7c3iZrjmbMmpNpHgEsZKLkVVMLvlYEjMYt8EFM5jHmJt_D4G_qcEnqai1z5h67a0SBP70A5TL1m6ppF3nGw-Y4kclAINPX98GZEkVzq4DPoVh7Nr31VCHoMNuxr6afrBLb2ZRfQ4yQMzFyE0U65FvNjrtUbfSD0wCHXt7uC9F52XOpau3Dkwppx4726CKDEwaoaLSvX7ZEntVE_x3uO1LE-0VUo5H4wf1YSLFrbckFJzrrgg6bzefY-YzjMn8k0iNTgbO-8zE4PuAmn0gzObCy_OgyS_-7-rpRCW53JpyF23Cpnd4z2san-fvMkYv3-d0_zAm-EJFD1zsso6ZJTjSPgJyTd54Q8W877jEVeZJXlDvjHo4IsWWIfxc7jMP5VCZFq_d6upuMsrHfEYQJR2vfqY-psXAcLRHsGaq8SzU4hK8T75fNuLb1m7_aqi7DZ2qS4UNHBBQu0FcqAB7SaKOY2FKdbsmoZI5kP_95UbaVwzWkORHq18nLa-LVM-saWN35EJ5Nsfwj8dXBrX2iGVM7gQODbmigMnevo9hh6oWqGaag31JRD3L_27aWacyEVhQtWwKEVVt4PvTauNFGvJD9FSGXPhuQzKC5-f6XeMleGm_6GOvRo7MeZodEa6cZxjCG0=w1383-h778-no", style="width: 700px; height: 350px;">
+
+        <p> 
+        The nerual network usued for this model consists of three hidden layers made of 40, 5, and 5 neurons respectively
+        with the VTPR EOS input added as a wide connection in the last layer. Data for this model was taken from various
+        locations in the United States, mainly the DJ-Basin and the Permian. The model has been trained on over 7,000 
+        samples and achives a mean absolute error (MAE) of 0.0148 and a root mean sqaured error (RMSE) of 0.0242
+        on the validation dataset. The accuracy of the dataset is shown below.
+        </p>
+        
+        <!-- Statistics picture-->
+        <img src="https://drive.google.com/uc?id=1DE_r_dxiCAOt9TK7KACeuH2AUF1n7WKz">
+        <!-- https://drive.google.com/file/d/1DE_r_dxiCAOt9TK7KACeuH2AUF1n7WKz/view?usp=sharing -->
+    </div>  
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+
+</body>
+
+
+<footer>
+    <p>Authors: Preston Blackburn, Ben Bagby<br>
+        Email us with any questions at: 
+    <a href="preston.blackburn@spl-inc.com"> preston.blackburn@spl-inc.com</a>
+    or
+    <a href="ben.bagby@spl-inc.com"> ben.bagby@spl-inc.com </a>
+</p>
+
+</footer>
+
+
+</html>
+

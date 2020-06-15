@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html >
+
+<head> 
+
+    <meta charset="UTF-8">
+    <meta name = "viewport" content="width=device-width, inital-scale = 1.0">
+    <meta http-equiv = "X-UA-Compatible" content= "ie=edge">
+    <title>Shrink Calculator</title>
+
+    <link rel="icon" type = "image/gif/png" href="https://drive.google.com/uc?id=1dLHjkWz85HeuGj76ciNmqml8TxOAcsS-">
+    <!-- <link rel = "stylesheet" href = 'style.css'>   only use when testing html-->
+    <link rel = "stylesheet" type = "text/css" href="{{ url_for('shrinkage_csv.static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <script src="https://kit.fontawesome.com/26fb797609.js" crossorigin="anonymous"></script>
+
+</head>
+
+
+        <!-- Nav Start -->
+    <nav>
+        <div class = "logo">
+            <img src = "https://drive.google.com/uc?id=1dLHjkWz85HeuGj76ciNmqml8TxOAcsS-", style="width: 50px; height: 50px;">
+            <h4>   SureSim </h4>
+
+        </div>
+        <ul class = "nav-links"> 
+            <li>  <a href = "{{url_for('main')}}"> Home </a>  </li>
+            <li>  <a href = "{{url_for('EOS_app.home')}}"> Separator Simulator </a> </li>
+            <li>  <a href = "{{url_for('scaling_app.home')}}"> Scaling Calcuator </a> </li>
+            <li>  <a href = "{{url_for('shrinkage_csv.home')}}"> Shrinkage Calculator </a> </li>
+            <li>  <a href = "{{url_for('main')}}"> Decline Curve Model </a> </li>
+        </ul>
+
+        <div class="mobile">
+            <div class = "line1"></div>
+            <div class = "line1"></div>
+            <div class = "line3"></div>
+          </div>
+    </nav>
+                      
+                  
+  
+  <div class="col-md-12">
+      <div class="text-center">
+          <h1>
+              Shrinkage Neural Net Calculator
+          </h1>
+      </div>
+  </div>
+
+
+
+<body>
+    <div class = "container">
+      <br>
+      <form method=POST action="{{ url_for('shrinkage_csv.predict')}}" enctype="multipart/form-data">
+        <div class = "form-group">
+      <label for="inputFile"> File Input:   </label>
+          <input type = "file" name = "inputFile">
+        </div>
+        <button type="submit" class="btn btn-primary">
+          Calculate
+        </button>
+  </form>
+  </div>
+
+    <br>
+  <div class = "shrink output">
+      <br>
+      <h3>
+        {{ table1 | safe }}
+      </h3>
+    <br>
+  </div>
+
+  <div class = "shrink output">
+    <br>
+    <h3>
+      {{ table2 | safe }}
+    </h3>
+  <br>
+</div>
+
+
+  <div class = "Description" data-aos = "fade-in">
+    <h3> Description </h3>
+        <p>
+          Upload data as a CSV file with concentrations in LV%. 
+        </p>
+        <p> 
+        This Model uses machine learning (a feed forward neural network) to predict the shrinkage of the sample.
+        It uses over 7000 training points based on real data to estimate shrinkage at standard temp and pressure (60 f and 0 psig).
+        </p>
+        <h3>
+          Important!
+        </h3>
+        <p>
+          The columns names in the csv file need to contain: LV % N2, LV % CO2, LV % C1, LV % C2,
+          LV % C3, LV % IC4, LV % NC4, LV % IC5, 
+          LV % NC5, LV % C6, LV % C7, C7+ Specific Gravity, C7+ Molecular Weight, Temp, Pressure, and Shrinkage Factor. 
+        </p>
+        <p>
+          ** if you are using this template to find shrinkage instead of compare shrinakges set the shrinkage values in the "Shrinkage Factor"
+          column to 1
+        </p>
+        <h3>
+          This code will not work if the column names don't match!
+        </h3>
+
+    </div>
+</body>
+
+<div class = "empty2">
+</div>
+
+<footer class = "footer">
+  <div class = "push">
+    <p>Authors: Preston Blackburn, Ben Bagby<br>
+        Email us with any questions at: 
+    <a href="preston.blackburn@spl-inc.com"> preston.blackburn@spl-inc.com</a>
+    or
+    <a href="ben.bagby@spl-inc.com"> ben.bagby@spl-inc.com </a>
+    </p>
+  </div>
+</footer>
+
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+
+
+</html>

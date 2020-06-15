@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head> 
+
+        <meta charset="UTF-8">
+        <meta name = "viewport" content="width=device-width, inital-scale = 1.0">
+        <meta http-equiv = "X-UA-Compatible" content= "ie=edge">
+        <title>Phase Calculator</title>
+    
+        <link rel="icon" type = "image/gif/png" href="https://drive.google.com/uc?id=1dLHjkWz85HeuGj76ciNmqml8TxOAcsS-">
+        <!-- <link rel = "stylesheet" href = 'style.css'>   only use when testing html-->
+        <link rel = "stylesheet" type = "text/css" href="{{ url_for('EOS_app.static', filename='style.css')}}">
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+        
+        <script src="https://kit.fontawesome.com/26fb797609.js" crossorigin="anonymous"></script>
+                <!-- adding Chartist.js-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+        <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    
+    
+    </head>
+
+
+<body>
+
+    <!-- Nav Start -->
+    <nav>
+    <div class = "logo">
+        <img src = "https://drive.google.com/uc?id=1dLHjkWz85HeuGj76ciNmqml8TxOAcsS-", style="width: 50px; height: 50px;">
+        <h4>   SureSim </h4>
+
+    </div>
+    <ul class = "nav-links"> 
+        <li>  <a href = "{{url_for('main')}}"> Home </a>  </li>
+        <li>  <a href = "{{url_for('EOS_app.home')}}"> Separator Simulator </a> </li>
+        <li>  <a href = "{{url_for('scaling_app.home')}}"> Scaling Calcuator </a> </li>
+        <li>  <a href = "{{url_for('shrinkage_csv.home')}}"> Shrinkage Calculator </a> </li>
+        <li>  <a href = "{{url_for('main')}}"> Decline Curve Model </a> </li>
+    </ul>
+
+    <div class="mobile">
+        <div class = "line1"></div>
+        <div class = "line1"></div>
+        <div class = "line3"></div>
+        </div>
+    </nav>
+
+  
+    <div class="col-md-12">
+            <h1>
+                Scaling Calculator
+                <br>
+                <br>
+            </h1>
+    </div>
+
+
+
+
+            <form action="{{ url_for('scaling_app.predict')}}"method="post">
+                <div class = "input">
+                <table class="table1">
+
+               <h2>
+                   Input values Below:
+               </h2> 
+               <tbody>
+                    <tr>
+                        <td><input type="text" name="id" placeholder="Sample Name"/></td>
+
+                        <td><input type="text" name="Na" placeholder="Na"/></td>
+
+                        <td><input type="text" name="K" placeholder="K"/></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="Ca" placeholder="Ca"/></td>
+
+                        <td><input type="text" name="Mg" placeholder="Mg"/></td>
+
+                        <td><input type="text" name="Ba" placeholder="Ba"/></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="Sr" placeholder="Sr" /></td>
+
+                        <td><input type="text" name="Fe" placeholder="Fe"/></td>
+
+                        <td><input type="text" name="Mn" placeholder="Mn"/></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="Cl" placeholder="Cl"/></td>
+
+                        <td><input type="text" name="F" placeholder="F"/></td>
+
+                        <td><input type="text" name="HCO3" placeholder="HCO3"/></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="CO3" placeholder="CO3"/></td>
+
+                        <td><input type="text" name="SO4" placeholder="SO4"/></td>
+
+                        <td><input type="text" name="NO3" placeholder="NO3"/></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="Silica" placeholder="Silica"/></td>
+
+                        <td><input type="text" name="pH" placeholder="pH"/></td>
+
+                        <td><input type="text" name="Temp_C" placeholder="Temperature (C)"/></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">Calculate</button>
+            </div>
+        </form> 
+         
+          
+                <!-- Alternate Upload Method-->
+            
+            
+       
+           <!--
+             <div class="col-md-4">
+   
+
+                    <h2>Or Upload A CSV File: </h2>
+                    <br>
+                    <form method=POST action="/predict" enctype="multipart/form-data">
+                         <div class = "form-group">
+                        <label for="inputFile"> File Input </label>
+                         <input type = "file" name = "inputFile">
+                         </div>
+                    <button type="submit" class="btn btn-primary">Calculate</button> 
+                    </form>
+
+            </div>
+        -->
+        </div>
+   
+
+        <div class = "summary" data-aos = "fade-in">
+            <h3>Scaling Indicies </h3>
+            <p>
+                {{ table1 | safe }}
+            </p>
+        </div>
+
+        <div class = "summary" data-aos = "fade-in">
+            <h3> Scaling Potential </h3>
+            <p>
+                {{ table2 | safe  }}
+            </p>
+        </div>
+
+        <div class = "summary" data-aos = "fade-in">
+            <h3> Ion Concentrations </h3>
+            <p>
+                {{ table4 | safe  }}
+            </p>
+        </div>
+
+        <div class = "summary" data-aos = "fade-in">
+            
+                <h3> Temperature Dependant Solubility </h3>
+                <p>
+                    {{ table3 | safe  }}
+                </p>          
+        </div>
+
+
+
+<!-- Messing with Adding in a Chart -->
+            <!-- bar chart canvas element -->
+        <div class = "summary">
+        <h4>Calcite Solubility vs Temperature</h4>
+        <div class="ct-chart ct-golden-section" id = "Calcite">    </div>
+        </div>
+        <div class = "summary">
+        <h4> Aragonite Solubility vs Temperature </h>
+        <div class="ct-chart ct-golden-section" id = "Aragonite">    </div>
+        </div>
+            <script>
+
+            
+            var Calcite_data = {
+            // A labels array that can contain any sort of values
+            labels: {{labels}},
+            // Our series array that contains series objects or in this case series data arrays
+            series: [
+            {{Calcite_ksp}}
+            ]
+             };
+
+             var Aragonite_data = {
+            labels: {{labels}},
+            series: [
+                {{Aragonite_ksp}}
+                ]
+              };
+
+            var options = {
+             };
+
+             var responsiveOptions = [['screen and (min-width: 641px) and (max-width: 1024px)']]
+
+        // Create a new line chart object where as first parameter we pass in a selector
+        // that is resolving to our chart container element. The Second parameter
+        // is the actual data object.
+        new Chartist.Line("#Calcite", Calcite_data, options, responsiveOptions);
+        new Chartist.Line("#Aragonite", Aragonite_data, options, responsiveOptions);
+
+            </script>
+
+    </div>
+
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+
+
+</body>
+
+<footer>
+    <p>Authors: Preston Blackburn, Ben Bagby<br>
+        Email us with any questions at: 
+    <a href="preston.blackburn@spl-inc.com"> preston.blackburn@spl-inc.com</a>
+    or
+    <a href="ben.bagby@spl-inc.com"> ben.bagby@spl-inc.com </a>
+</p>
+
+</footer>
+
+
+
+
+</html>

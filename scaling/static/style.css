@@ -1,0 +1,398 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+        /* Nav css */
+        nav { 
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 75px;
+            background-color:rgb(41, 41, 41);
+        }
+        
+        .nav-links * {
+            box-sizing: border-box;
+            transition: all .35s ease;
+          }
+        
+        .logo{
+            display: flex;
+            align-items: center;
+            color: rgba(226, 226, 226, 0.897);
+            letter-spacing: 3px;
+            font-size: 30px;
+        }
+        
+        .nav-links li{
+            display: inline-block;
+            list-style: outside none none;
+            margin: .5em 1em;
+            padding: 0;
+
+        }
+        .nav-links a{
+            padding: .5em .8em;
+            color: rgba(226, 226, 226, 0.897);
+            position: relative;
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-weight: bold;
+            font-size: 13px;
+          }
+
+          .nav-links a::before,
+          .nav-links a::after {
+            content: '';
+            height: 14px;
+            width: 14px;
+            position: absolute;
+            transition: all .35s ease;
+            opacity: 0;
+          }
+
+          .nav-links a::before {
+            content: '';
+            right: 0;
+            top: 0;
+            border-top: 3px solid rgb(27, 122, 185);
+            border-right: 3px solid rgb(27, 122, 185);
+            transform: translate(-100%, 50%);
+          }
+          
+          .nav-links a:after {
+            content: '';
+            left: 0;
+            bottom: 0;
+            border-bottom: 3px solid rgb(27, 122, 185);
+            border-left: 3px solid rgb(27, 122, 185);
+            transform: translate(100%, -50%)
+          }
+          
+          .nav-links a:hover:before,
+          .nav-links a:hover:after{
+            transform: translate(0,0);
+            opacity: 1;
+          }
+          
+          .nav-links a:hover {
+            color: rgb(27, 122, 185);
+          }
+
+        
+        .mobile {
+            display: none;
+            cursor: pointer;
+        }
+        .mobile div{
+            width: 25px;
+            height: 5px;
+            background-color: rgb(226,226,226, 0.897);
+            margin: 5px;
+        }
+        
+        /*  More nav items */
+        
+        @media screen and (max-width: 600px) {
+            body {
+                overflow-x: hidden;
+            }
+            /*
+            .nav-links{
+                position: absolute;
+                right: 0px;
+                height: 92vh;
+                top: 75px;
+                background-color: #fff;
+                display: flex;
+                flex-direction:column;
+                align-items: center;
+                width: 100%;
+                transform: translateX(100%);
+                transition: transform 0.5s ease-in-out;
+            }
+            */
+            .nav-links li{
+                opacity: 0;
+            }
+            .mobile{
+                display: block;
+            }
+        
+        }
+        
+        .nav-active{
+            transform: translateX(0%);
+        
+        }
+        
+        .nav-active-slider {
+            opacity: 0;
+        }
+        
+        @keyframes navLinkFade{
+            from { 
+                opacity: 0;
+                transform: translate(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translate(0px);   
+            }
+        }
+
+/*     Calculation Area     */
+
+body {
+    background-color: rgb(170, 170, 170);
+
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    height: 100px;
+}
+
+.container {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    margin: auto;
+    overflow: auto;
+    text-align: center;
+
+}
+
+/*  Dynamically change layout of claculator  */
+@media(max-width: 800px) {
+    .container { 
+      display: block;
+    }
+  }
+
+.input {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 1rem;
+ 
+}
+
+.output { 
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+.empty{
+  height: 15vw;
+  width: 500px;
+
+}
+
+.sep { 
+    padding: 0 1rem;
+    padding-bottom: 4rem;
+}
+
+.input {
+    padding: 0 1rem;
+    margin: auto;
+    overflow: auto;
+    padding-bottom: 4rem;
+}
+
+.summary {
+    font-family: 'Roboto', sans-serif;
+    position: relative; 
+    width: 700px;
+    padding: 0 3rem;
+    text-align: center;
+    background: rgba(226, 226, 226, 0.85);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 4rem;
+    margin-top: 4rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+.head {
+    display: relative;
+    top: 150px;
+    text-align: center;
+    padding: 0 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+}
+.Description {
+    font-family: 'Roboto', sans-serif;
+    display: relative;
+    grid-gap: 2rem;
+    width:  700px;
+    background: rgba(226, 226, 226, 0.85);
+    margin-bottom: 3rem;
+    padding: 0 3rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    margin-top: 2rem;
+    cursor: pointer;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow:inset 0px -3px 7px 0px #29bbff;
+	background:linear-gradient(to bottom, #2dabf9 5%, #045ba7 100%);
+	background-color:#2dabf9;
+	border-radius:3px;
+	border:1px solid #0b0e07;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	padding:9px 23px;
+	text-decoration:none;
+    text-shadow:0px 1px 0px #263666;
+    
+  }
+
+.btn:hover {
+    opacity: 0.7;
+  
+  }
+
+
+.btn:active {
+    opacity: 0.7;
+  
+  }
+
+
+
+
+/*      Footer Styling        */
+
+
+footer{
+    text-align: center;
+    height: 75px;
+    background-color:rgb(41, 41, 41);
+    padding: 3px;
+    color: rgba(226, 226, 226, 0.897);
+}
+
+
+
+
+/*    Table Style    */
+
+table.table1 {
+    border: 1px solid #1C6EA4;
+    background-color: #EEEEEE;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+  }
+  table.table1 td, table.table1 th {
+    border: 1px solid #AAAAAA;
+    padding: 4px 3px;
+  }
+  table.table1 tbody td {
+    font-size: 13px;
+  }
+  table.table1 tr:nth-child(even) {
+    background: #D0E4F5;
+  }
+  table.table1 thead {
+    background: #1C6EA4;
+    background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    border-bottom: 2px solid #444444;
+  }
+  table.table1 thead th {
+    font-size: 15px;
+    color: #FFFFFF;
+    text-align: center;
+    border-left: 2px solid #D0E4F5;
+  }
+  table.table1 thead th:first-child {
+    border-left: none;
+  }
+  
+  table.table1 tfoot td {
+    font-size: 14px;
+  }
+  table.blueTable tfoot .links {
+    text-align: right;
+  }
+  table.table1 tfoot .links a{
+    display: inline-block;
+    background: #1C6EA4;
+    color: #FFFFFF;
+    padding: 2px 8px;
+    border-radius: 5px;
+  }
+
+  /*   Pandas DF Styling    */ 
+  table.dataframe {
+    border: 1px solid #1C6EA4;
+    background-color: #EEEEEE;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+  }
+  table.dataframe td, table.table1 th {
+    border: 1px solid #AAAAAA;
+    padding: 4px 3px;
+  }
+  table.dataframe tbody td {
+    font-size: 13px;
+  }
+  table.dataframe tr:nth-child(even) {
+    background: #D0E4F5;
+  }
+  table.dataframe thead {
+    background: #1C6EA4;
+    background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    border-bottom: 2px solid #444444;
+  }
+  table.dataframe thead th {
+    font-size: 15px;
+    color: #FFFFFF;
+    text-align: center;
+    border-left: 2px solid #D0E4F5;
+  }
+  table.dataframe thead th:first-child {
+    border-left: none;
+  }
+  
+  table.dataframe tfoot td {
+    font-size: 14px;
+  }
+
+  table.dataframe tfoot .links a{
+    display: inline-block;
+    background: #1C6EA4;
+    color: #FFFFFF;
+    padding: 2px 8px;
+    border-radius: 5px;
+  }
