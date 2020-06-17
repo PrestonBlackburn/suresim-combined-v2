@@ -141,6 +141,19 @@ def predict():
         'Pressure', 'Temp', 'C7+ Specific Gravity', 'Total Spec. Grav.', 
         'C7+ Molecular Weight']
 
+    component_list = [
+                'Nitrogen',
+                'Carbon Dioxide',
+                'Methane',
+                'Ethane',
+                'Propane',
+                'Isobutane',
+                'n-Butane',
+                'Isopentane',
+                'n-Pentane',
+                'n-Hexane',
+                'Heptanes+'
+                ]
 
     ##   -------------      VTPR Calcs + Unit Conversions     --------------------
 
@@ -174,20 +187,6 @@ def predict():
 
     for i in range(0, len(df)):
         try:
-            component_list = [
-                        'Nitrogen',
-                        'Methane',
-                        'Carbon Dioxide',
-                        'Ethane',
-                        'Propane',
-                        'Isobutane',
-                        'n-Butane',
-                        'Isopentane',
-                        'n-Pentane',
-                        'n-Hexane',
-                        'Heptanes+'
-                        ]
-
             mole_fraction = mol_pct.iloc[i].values
 
             T_df = df['Temp']
@@ -209,6 +208,7 @@ def predict():
 
             T = (T - 32) * 5 / 9 + 273.15
             P = (P + 14.65)/14.5038
+            
             eos = VTPR(component_list, mole_fraction, MW_plus_fraction, SG_plus_fraction, P, T)
             shrinkage = eos.shrinkage(bubble_point_force=False)
             print(shrinkage)
@@ -261,17 +261,32 @@ def predict():
     deep = float(deep_prediction)
     shrink_comb = {'Shrinkage': [shrinkage, deep, wide]}               
     shrink_df = pd.DataFrame(shrink_comb, index=['VTPR-EOS', '3 Layer NN', 'Wide NN'])
- 
+
 
     ##   -------------------- Handling Liquid and Vapor Streams   -------------------------
     Density = [6.727, 6.8129, 2.5, 2.9704 , 4.2285, 4.6925, 4.8706, 5.212, 5.2584, 5.5364, float(df['C7+ Specific Gravity'].values*8.3372)]
     MW = [28.0, 44.0, 16.0, 30.1, 44.1, 58.1, 58.1, 72.1, 72.1, 86.2, float(df['C7+ Molecular Weight'].values)]
+
     density = np.reshape(Density, (1, 11)).T
     mw = np.reshape(MW, (1,11)).T
 
+    # handeling components with a zero conc
     liquid = eos.x
-    liquid_df = pd.DataFrame.from_dict(liquid)
-    liquid_df.columns = ['mol']
+    if component_list != list(liquid.keys()):
+        missing_comp = [x for x in component_list if x not in liquid]
+        zeros = []
+        for i in range(len(missing_comp)):
+            i = 0
+            zeros.append(i)
+        temp = dict(zip(missing_comp, zeros))
+        liquid = liquid.to_dict()
+        liquid.update(temp)
+
+    else:
+        pass
+            
+    liquid_df = pd.DataFrame(index=component_list)
+    liquid_df["mol"] = pd.Series(liquid)
     liquid_df['density'] = density
     liquid_df['MW'] = mw
     liquid_df['Wt'] = liquid_df['mol'] * liquid_df['MW']
@@ -281,9 +296,22 @@ def predict():
     liquid_pct_df = liquid_df['LV_pct']
     liquid_pct_df = pd.DataFrame(liquid_pct_df)
 
+    # handeling components with a zero conc
     vapor = eos.y
-    vapor_df = pd.DataFrame.from_dict(vapor)
-    vapor_df.columns = ['mol']
+    if component_list != list(vapor.keys()):
+        missing_comp_v = [x for x in component_list if x not in vapor]
+        zeros = []
+        for i in range(len(missing_comp_v)):
+            i = 0
+            zeros.append(i)
+        temp_v = dict(zip(missing_comp_v, zeros))
+        vapor = vapor.to_dict()
+        vapor.update(temp_v)
+    else:
+        pass
+
+    vapor_df = pd.DataFrame(index=component_list)
+    vapor_df["mol"] = pd.Series(vapor)
     vapor_df['density'] = density
     vapor_df['MW'] = mw
     vapor_df['Wt'] = vapor_df['mol'] * vapor_df['MW']
@@ -292,6 +320,9 @@ def predict():
     vapor_df['LV_pct'] = vapor_df['LV'] / vapor_df['LV'].sum() *100
     vapor_pct_df = vapor_df['LV_pct']
     vapor_pct_df = pd.DataFrame(vapor_pct_df)
+
+
+
 
 
 
