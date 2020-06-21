@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+ 
 
 * {
   box-sizing: border-box;
@@ -6,11 +7,14 @@
   padding: 0;
 }
 
-        /* Nav css */
-nav { 
+
+
+/* Nav css */
+  nav { 
     font-family: 'Roboto', sans-serif;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 30px;
     align-items: center;
     height: 75px;
     background-color:rgb(41, 41, 41);
@@ -25,6 +29,8 @@ nav {
 .nav-links * {
   box-sizing: border-box;
   transition: all .35s ease;
+
+
 }
 
 .logo{
@@ -90,59 +96,68 @@ nav {
   color: rgb(27, 122, 185);
 }
 
-
-.mobile {
-    display: none;
+.hamburger {
+    display:none;
+    border: 0;
+    color: rgba(226, 226, 226, 0.897);
+    font-size: 40px;
     cursor: pointer;
+    top: 20px;
+    background-color: transparent;
 }
-.mobile div{
-    width: 25px;
-    height: 5px;
-    background-color: rgb(226,226,226, 0.897);
-    margin: 5px;
-}
+
 
 /*  More nav items */
 
 
-@media screen and (max-width: 1224px) {
+@media screen and (max-width: 1200px) {
     body {
         overflow-x: hidden;
     }
 
-    .nav-btn{
-      background-color:rgb(41, 41, 41); 
-      outline: transparent;
-    }
-
-    
-
-
-    /*
-    .nav-links{
-        overflow: hidden;
-        position: absolute;
-        right: 0px;
-        height: 92vh;
-        top: 75px;
-        background-color: #fff;
+    .hamburger{
+        visibility: visible;
         display: flex;
-        flex-direction:column;
-        align-items: center;
-        width: 100%;
-        transform: translateX(100%);
-        transition: transform 0.5s ease-in-out;
-    }
-    */
-
-    .nav-links li{
-        opacity: 0;
-    }
-    .mobile{
-        display: block;
-        background-color:rgb(41, 41, 41); 
+        justify-content: flex-end;
+        right: 10px;
     }
 
+    .hamburger:focus {
+        outline: none;
+    }
+
+    nav { 
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .dropdown {
+        display: grid;
+        background-color :rgb(41, 41, 41);
+        z-index: 1;
+
+    }
+
+    .nav-links {
+        display: none;
+        width: 100;
+        flex-direction: column;
+    }
+
+    .nav-links.show {
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px;
+        right: 10px;
+        
+    }
+
+    .nav-links.show li {
+            display: flex;
+            justify-content: flex-end;
+    }
 }
 
 .nav-active{
@@ -164,6 +179,7 @@ nav {
         transform: translate(0px);
     }
 }
+
 
 
 

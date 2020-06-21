@@ -3,144 +3,144 @@
 
         /* Nav css */
         nav { 
-            font-family: 'Roboto', sans-serif;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            height: 75px;
-            background-color:rgb(41, 41, 41);
+          font-family: 'Roboto', sans-serif;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          height: 75px;
+          background-color:rgb(41, 41, 41);
+      }
+      
+      .nav-links * {
+          box-sizing: border-box;
+          transition: all .35s ease;
         }
-        
-        .nav-links * {
-            box-sizing: border-box;
-            transition: all .35s ease;
-          }
-        
-        .logo{
-            display: flex;
-            align-items: center;
-            color: rgba(226, 226, 226, 0.897);
-            letter-spacing: 3px;
-            font-size: 30px;
-        }
-        
-        .nav-links li{
-            display: inline-block;
-            list-style: outside none none;
-            margin: .5em 1em;
-            padding: 0;
+      
+      .logo{
+          display: flex;
+          align-items: center;
+          color: rgba(226, 226, 226, 0.897);
+          letter-spacing: 3px;
+          font-size: 30px;
+      }
+      
+      .nav-links li{
+          display: inline-block;
+          list-style: outside none none;
+          margin: .5em 1em;
+          padding: 0;
 
-        }
-        .nav-links a{
-            padding: .5em .8em;
-            color: rgba(226, 226, 226, 0.897);
-            position: relative;
-            text-decoration: none;
-            letter-spacing: 2px;
-            font-weight: bold;
-            font-size: 13px;
-          }
-
-          .nav-links a::before,
-          .nav-links a::after {
-            content: '';
-            height: 14px;
-            width: 14px;
-            position: absolute;
-            transition: all .35s ease;
-            opacity: 0;
-          }
-
-          .nav-links a::before {
-            content: '';
-            right: 0;
-            top: 0;
-            border-top: 3px solid rgb(27, 122, 185);
-            border-right: 3px solid rgb(27, 122, 185);
-            transform: translate(-100%, 50%);
-          }
-          
-          .nav-links a:after {
-            content: '';
-            left: 0;
-            bottom: 0;
-            border-bottom: 3px solid rgb(27, 122, 185);
-            border-left: 3px solid rgb(27, 122, 185);
-            transform: translate(100%, -50%)
-          }
-          
-          .nav-links a:hover:before,
-          .nav-links a:hover:after{
-            transform: translate(0,0);
-            opacity: 1;
-          }
-          
-          .nav-links a:hover {
-            color: rgb(27, 122, 185);
-          }
-
-        
-        .mobile {
-            display: none;
-            cursor: pointer;
-        }
-        .mobile div{
-            width: 25px;
-            height: 5px;
-            background-color: rgb(226,226,226, 0.897);
-            margin: 5px;
-        }
-        
-        /*  More nav items */
-        
-        @media screen and (max-width: 600px) {
-            body {
-                overflow-x: hidden;
-            }
-            /*
-            .nav-links{
-                position: absolute;
-                right: 0px;
-                height: 92vh;
-                top: 75px;
-                background-color: #fff;
-                display: flex;
-                flex-direction:column;
-                align-items: center;
-                width: 100%;
-                transform: translateX(100%);
-                transition: transform 0.5s ease-in-out;
-            }
-            */
-            .nav-links li{
-                opacity: 0;
-            }
-            .mobile{
-                display: block;
-            }
-        
-        }
-        
-        .nav-active{
-            transform: translateX(0%);
-        
-        }
-        
-        .nav-active-slider {
-            opacity: 0;
-        }
-        
-        @keyframes navLinkFade{
-            from { 
-                opacity: 0;
-                transform: translate(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translate(0px);   
-            }
+      }
+      .nav-links a{
+          padding: .5em .8em;
+          color: rgba(226, 226, 226, 0.897);
+          position: relative;
+          text-decoration: none;
+          letter-spacing: 2px;
+          font-weight: bold;
+          font-size: 13px;
         }
 
+        .nav-links a::before,
+        .nav-links a::after {
+          content: '';
+          height: 14px;
+          width: 14px;
+          position: absolute;
+          transition: all .35s ease;
+          opacity: 0;
+        }
+
+        .nav-links a::before {
+          content: '';
+          right: 0;
+          top: 0;
+          border-top: 3px solid rgb(27, 122, 185);
+          border-right: 3px solid rgb(27, 122, 185);
+          transform: translate(-100%, 50%);
+        }
+        
+        .nav-links a:after {
+          content: '';
+          left: 0;
+          bottom: 0;
+          border-bottom: 3px solid rgb(27, 122, 185);
+          border-left: 3px solid rgb(27, 122, 185);
+          transform: translate(100%, -50%)
+        }
+        
+        .nav-links a:hover:before,
+        .nav-links a:hover:after{
+          transform: translate(0,0);
+          opacity: 1;
+        }
+        
+        .nav-links a:hover {
+          color: rgb(27, 122, 185);
+        }
+
+      
+      .mobile {
+          display: none;
+          cursor: pointer;
+      }
+      .mobile div{
+          width: 25px;
+          height: 5px;
+          background-color: rgb(226,226,226, 0.897);
+          margin: 5px;
+      }
+      
+      /*  More nav items */
+      
+      @media screen and (max-width: 600px) {
+          body {
+              overflow-x: hidden;
+          }
+
+          /*
+          .nav-links{
+              position: absolute;
+              right: 0px;
+              height: 92vh;
+              top: 75px;
+              background-color: #fff;
+              display: flex;
+              flex-direction:column;
+              align-items: center;
+              width: 100%;
+              transform: translateX(100%);
+              transition: transform 0.5s ease-in-out;
+          }
+          */
+          .nav-links li{
+              opacity: 0;
+          }
+          .mobile{
+              display: block;
+          }
+      
+      }
+      
+      .nav-active{
+          transform: translateX(0%);
+      
+      }
+      
+      .nav-active-slider {
+          opacity: 0;
+      }
+      
+      @keyframes navLinkFade{
+          from { 
+              opacity: 0;
+              transform: translate(50px);
+          }
+          to {
+              opacity: 1;
+              transform: translate(0px);   
+          }
+      }
 /*     Calculation Area     */
 
 body {
