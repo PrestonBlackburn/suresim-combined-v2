@@ -95,47 +95,47 @@
                     <td>C7+ MW: 100-200</td>
                 </tr>
                 <tr>
-                    <td><input type="text" name="C1" placeholder="Methane (LV%)" required="required" /></td>
+                    <td><input type="text" name="C1" placeholder="Methane" required="required" /></td>
                     <td>C1: 0.0 - 5.0</td>
                 </tr>
                 <tr>
-                    <td><input type="text" name="C2" placeholder="Ethane (LV%)" required="required" /></td>
+                    <td><input type="text" name="C2" placeholder="Ethane" required="required" /></td>
                     <td>C2: 0.0 - 5.0</td>
                 </tr>
                 <tr>
-                    <td><input type="text" name="C3" placeholder="Propane (LV%)" required="required" /></td>
+                    <td><input type="text" name="C3" placeholder="Propane" required="required" /></td>
                     <td>C3: 0.0 - 8.0</td>
                 </tr>
                 <tr>
-                    <td><input type="text" name="iC4" placeholder="Isobutane (LV%)" required="required" /></td>
+                    <td><input type="text" name="iC4" placeholder="Isobutane" required="required" /></td>
                     <td>iC4: 0.0 - 5.0</td>
                 </tr> 
                 <tr>
-                    <td><input type="text" name="C4" placeholder="n-Butane (LV%)" required="required" /></td>
+                    <td><input type="text" name="C4" placeholder="n-Butane" required="required" /></td>
                     <td>C4: 0.0 - 8.0</td>
                 </tr>   
                 <tr>
-                    <td><input type="text" name="iC5" placeholder="Isopentane (LV%)" required="required" /></td>
+                    <td><input type="text" name="iC5" placeholder="Isopentane" required="required" /></td>
                     <td>iC5: 0.0 - 8.0</td>
                 </tr>       
                 <tr>
-                    <td><input type="text" name="C5" placeholder="n-Pentane (LV%)" required="required" /></td>
+                    <td><input type="text" name="C5" placeholder="n-Pentane" required="required" /></td>
                     <td>C5: 0.0 - 8.0</td>
                 </tr> 
                 <tr>
-                    <td><input type="text" name="C6" placeholder="Hexanes (LV%)" required="required" /></td>
+                    <td><input type="text" name="C6" placeholder="Hexanes" required="required" /></td>
                     <td>C6: 1.0 - 15.0</td>
                 </tr>     
                 <tr>
-                    <td><input type="text" name="C7" placeholder="Heptanes Plus (LV%)" required="required" /></td>
+                    <td><input type="text" name="C7" placeholder="Heptanes Plus" required="required" /></td>
                     <td>C7: 65.0 - 85.0</td>
                 </tr>      
                 <tr>
-                    <td><input type="text" name="CO2" placeholder="Carbon Dioxide (LV%)" required="required" /></td>
+                    <td><input type="text" name="CO2" placeholder="Carbon Dioxide" required="required" /></td>
                     <td>CO2: 0.0 - 0.5</td>
                 </tr>   
                 <tr>
-                    <td><input type="text" name="N2" placeholder="Nitrogen (LV%)" required="required" /></td>
+                    <td><input type="text" name="N2" placeholder="Nitrogen" required="required" /></td>
                     <td>N2: 0.0 - 0.5</td>
                 </tr>                                                      
             </tbody>
@@ -145,6 +145,17 @@
             <button type="submit" class="btn btn-primary">
                 Calculate
             </button>
+
+            <div class='select-units'>
+                <h3> Select Units: </h3>
+                <input type="Radio" name="units" value="LV"> LV%
+                <input type="Radio" name="units" value="Mol"> Mol%
+            </div>
+
+
+
+
+
             </div>
 
         </form>
