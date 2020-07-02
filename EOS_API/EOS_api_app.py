@@ -306,7 +306,7 @@ class Mol_Input:
         return cls(N2, CO2, C1, C2, C3, iC4, C4, iC5, C5, C6, C7, shrink, P, T, C7_SG, SG, C7_MW)
 
 
-EOS_api_app = Blueprint("EOS_api_app", __name__, static_folder = "static", template_folder = "templates")
+EOS_api_app = Blueprint("EOS_api_app", __name__)
 
 
 

@@ -11,14 +11,14 @@
     
         <link rel="icon" type = "image/gif/png" href="https://drive.google.com/uc?id=1dLHjkWz85HeuGj76ciNmqml8TxOAcsS-">
         <!-- <link rel = "stylesheet" href = 'style.css'>   only use when testing html-->
+        <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
         <link rel = "stylesheet" type = "text/css" href="{{ url_for('EOS_app.static', filename='style.css')}}">
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
         
         <script src="https://kit.fontawesome.com/26fb797609.js" crossorigin="anonymous"></script>
                 <!-- adding Chartist.js-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
-        <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
-    
+
     
     </head>
 
@@ -109,6 +109,9 @@
 
                         <td><input type="text" name="Temp_C" placeholder="Temperature (C)"/></td>
                     </tr>
+                    <tr>
+                        <td><input type="text" name="H2S" placeholder="H2S"/></td>
+                    </tr>
                 </tbody>
             </table>
             <button type="submit" class="btn btn-primary">Calculate</button>
@@ -171,48 +174,171 @@
 
 
 <!-- Messing with Adding in a Chart -->
-            <!-- bar chart canvas element -->
-        <div class = "summary">
-        <h4>Calcite Solubility vs Temperature</h4>
-        <div class="ct-chart ct-golden-section" id = "Calcite">    </div>
-        </div>
-        <div class = "summary">
-        <h4> Aragonite Solubility vs Temperature </h>
-        <div class="ct-chart ct-golden-section" id = "Aragonite">    </div>
-        </div>
-            <script>
+            <!-- bar chart canvas element-->
 
-            
-            var Calcite_data = {
+        <div class = "summary">
+            <h4>Calcite Solubility vs Temperature</h4>
+            <div class="ct-chart" id = "Calcite">    </div>
+        </div>
+        <div class = "summary">
+            <h4> Aragonite Solubility vs Temperature </h4>
+            <div class="ct-chart" id = "Aragonite">    </div>
+        </div>
+        <div class = "summary">
+            <h4> CaSO4 vs Temperature </h4>
+            <div class="ct-chart" id = "CaSO4">    </div>
+        </div>
+        <div class = "summary">
+            <h4> Gypsum vs Temperature </h4>
+            <div class="ct-chart" id = "Gypsum">    </div>
+        </div>
+        <div class = "summary">
+            <h4> BaSO4 vs Temperature </h4>
+            <div class="ct-chart" id = "BaSO4">    </div>
+        </div>
+        <div class = "summary">
+            <h4> SrSO4 vs Temperature </h4>
+            <div class="ct-chart" id = "SrSO4">    </div>
+        </div>
+        <div class = "summary">
+            <h4> FeCO3 vs Temperature </h4>
+            <div class="ct-chart" id = "FeCO3">    </div>
+        </div>
+        <div class = "summary">
+            <h4> FeS vs Temperature </h4>
+            <div class="ct-chart" id = "FeS">    </div>
+        </div>
+        <div class = "summary">
+            <h4> Halite vs Temperature </h4>
+            <div class="ct-chart" id = "Halite">    </div>
+        </div>
+        <div class = "summary">
+            <h4> MgCO3 vs Temperature </h4>
+            <div class="ct-chart" id = "MgCO3">    </div>
+        </div>
+        <div class = "summary">
+            <h4> CaF2 vs Temperature </h4>
+            <div class="ct-chart" id = "CaF2">    </div>
+        </div>
+
+        
+        <script>
+
+        
+        var Calcite_data = {
             // A labels array that can contain any sort of values
             labels: {{labels}},
             // Our series array that contains series objects or in this case series data arrays
             series: [
             {{Calcite_ksp}}
             ]
-             };
+        };
 
-             var Aragonite_data = {
+        var Aragonite_data = {
             labels: {{labels}},
             series: [
                 {{Aragonite_ksp}}
-                ]
-              };
+             ]
+        };
+        
+        var CaSO4_data = {
+            labels: {{labels}},
+            series: [
+                {{CaSO4_ksp}}
+            ]
+        };
 
-            var options = {
-             };
+        var Gypsum_data = {
+            labels: {{labels}},
+            series: [
+                {{Gypsum_ksp}}
+            ]
+        };
 
-             var responsiveOptions = [['screen and (min-width: 641px) and (max-width: 1024px)']]
+        var CaSO4_data = {
+            labels: {{labels}},
+            series: [
+                {{CaSO4_ksp}}
+            ]
+        };
 
-        // Create a new line chart object where as first parameter we pass in a selector
-        // that is resolving to our chart container element. The Second parameter
-        // is the actual data object.
-        new Chartist.Line("#Calcite", Calcite_data, options, responsiveOptions);
-        new Chartist.Line("#Aragonite", Aragonite_data, options, responsiveOptions);
+        var BaSO4_data = {
+            labels: {{labels}},
+            series: [
+                {{BaSO4_ksp}}
+            ]
+        };
 
-            </script>
+        var SrSO4_data = {
+            labels: {{labels}},
+            series: [
+                {{SrSO4_ksp}}
+            ]
+        };
 
-    </div>
+        var FeCO3_data = {
+            labels: {{labels}},
+            series: [
+                {{FeCO3_ksp}}
+            ]
+        };
+
+        var FeS_data = {
+            labels: {{labels}},
+            series: [
+                {{FeS_ksp}}
+            ]
+        };
+
+        var Halite_data = {
+            labels: {{labels}},
+            series: [
+                {{Halite_ksp}}
+            ]
+        };
+
+        var MgCO3_data = {
+            labels: {{labels}},
+            series: [
+                {{MgCO3_ksp}}
+            ]
+        };
+
+        var CaF2_data = {
+            labels: {{labels}},
+            series: [
+                {{CaF2_ksp}}
+            ]
+        };
+
+        
+
+        var options = {
+
+            };
+
+        var responsiveOptions = [['screen and (min-width: 641px) and (max-width: 1024px)']]
+
+    // Create a new line chart object where as first parameter we pass in a selector
+    // that is resolving to our chart container element. The Second parameter
+    // is the actual data object.
+    new Chartist.Line("#Calcite", Calcite_data, options, responsiveOptions);
+    new Chartist.Line("#Aragonite", Aragonite_data, options, responsiveOptions);
+    new Chartist.Line('#CaSO4', CaSO4_data, options, responsiveOptions);
+    new Chartist.Line('#Gypsum', Gypsum_data, options, responsiveOptions);
+    new Chartist.Line('#BaSO4', BaSO4_data, options, responsiveOptions);
+    new Chartist.Line('#SrSO4', SrSO4_data, options, responsiveOptions);
+    new Chartist.Line('#FeCO3', FeCO3_data, options, responsiveOptions);
+    new Chartist.Line('#FeS', FeS_data, options, responsiveOptions);
+    new Chartist.Line('#Halite', Halite_data, options, responsiveOptions);
+    new Chartist.Line('#MgCO3', MgCO3_data, options, responsiveOptions);
+    new Chartist.Line('#CaF2', CaF2_data, options, responsiveOptions);
+
+
+    </script>
+
+</div>
+
 
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>

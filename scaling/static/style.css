@@ -211,17 +211,16 @@ h1 {
 .summary {
     font-family: 'Roboto', sans-serif;
     position: relative; 
-    width: 700px;
+    width: 800px;
     padding: 0 3rem;
     text-align: center;
     background: rgba(226, 226, 226, 0.85);
-    margin-left: auto;
-    margin-right: auto;
     margin-bottom: 4rem;
     margin-top: 4rem;
     padding-top: 1rem;
     padding-bottom: 2rem;
 }
+
 
 .head {
     display: relative;
@@ -396,3 +395,7 @@ table.table1 {
     padding: 2px 8px;
     border-radius: 5px;
   }
+
+
+
+  
