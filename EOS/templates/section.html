@@ -1,0 +1,227 @@
+
+
+
+
+
+<div class="all-gas-outputs">
+    <div class = 'gas-out' id="gas-out1">
+        <h2>
+            Gas Output Stage 1
+        </h2>
+        <br>
+
+        <table class="dataframe">
+        <thead>
+            <tr>
+                <th>Compound:</th>
+                <th> Mol%:</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value in n1_vapor.items() %}
+            <tr>
+                <th> {{ key }} </th>
+                <th> {{ value }}</th>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+
+    <div class = 'gas-out' id="gas-out2">
+        <h2>
+            Gas Output Stage 2
+        </h2>
+        <br>
+
+        <table class="dataframe">
+            <thead>
+                <tr>
+                    <th>Compound:</th>
+                    <th> Mol%:</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if n2_vapor is defined %}
+                    {% for key, value in n2_vapor.items() %}
+                    <tr>
+                        <th> {{ key }} </th>
+                        <th> {{ value }}</th>
+                    </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+            </table>
+    </div>
+
+
+    <div class = 'gas-out' id="gas-out3">
+        <h2>
+            Gas Output Stage 3
+        </h2>
+        <br>
+        <table class="dataframe">
+            <thead>
+                <tr>
+                    <th>Compound:</th>
+                    <th> Mol%:</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if n3_vapor is defined %}
+                {% for key, value in n3_vapor.items() %}
+                <tr>
+                    <th> {{ key }} </th>
+                    <th> {{ value }}</th>
+                </tr>
+                {% endfor %}
+            {% endif %}
+            </tbody>
+            </table>
+    </div>
+</div>
+
+
+
+<div class = "separator-images">
+    <div class = 'sep1' id ="sep1">
+        <!-- separator picture-->
+        <img src="https://drive.google.com/uc?id=1CD3rk8tvvQLsi9tYNMtLvN1TC7MPdrQq", style="width: 150px; height: 450px;" onclick="showInput1()"> 
+    </div>
+
+
+
+
+    <div class="separator-2" id="separator-2">
+        <div class='sep2' id="sep2">
+            <!-- separator picture-->
+            <img src="https://drive.google.com/uc?id=1CD3rk8tvvQLsi9tYNMtLvN1TC7MPdrQq", style="width: 150px; height: 450px;" onclick="showInput2()"> 
+        </div>
+
+    </div>
+
+    <div class="separator-3" id="separator-3">
+        <div class='sep3' id="sep3">
+            <!-- separator picture-->
+            <img src="https://drive.google.com/uc?id=1CD3rk8tvvQLsi9tYNMtLvN1TC7MPdrQq", style="width: 150px; height: 450px;" onclick="showInput3()"> 
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="all-oil-output" id="all-oil-out">
+    <div class = 'oil-out' id="oil-out1"> 
+        <h2>
+            Oil Output Stage 1
+        </h2>
+        <br>
+        <table class="dataframe">
+            <thead>
+                <tr>
+                    <th>Compound:</th>
+                    <th> Mol%:</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in n1_liquid.items() %}
+                <tr>
+                    <th> {{ key }} </th>
+                    <th> {{ value }}</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+    </div>
+
+    <div class = 'oil-out' id="oil-out2"> 
+        <h2>
+            Oil Output Stage 2
+        </h2>
+        <br>
+        <table class="dataframe">
+            <thead>
+                <tr>
+                    <th>Compound:</th>
+                    <th> Mol%:</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if n2_liquid is defined %}
+                {% for key, value in n2_liquid.items() %}
+                <tr>
+                    <th> {{ key }} </th>
+                    <th> {{ value }}</th>
+                </tr>
+                {% endfor %}
+            {% endif %}
+            </tbody>
+            </table>
+    </div>
+
+
+    <div class = 'oil-out' id="oil-out3"> 
+        <h2>
+            Oil Output Stage 3
+        </h2>
+        <br>
+        <table class="dataframe">
+            <thead>
+                <tr>
+                    <th>Compound:</th>
+                    <th> Mol%:</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if n3_liquid is defined %}
+                {% for key, value in n3_liquid.items() %}
+                <tr>
+                    <th> {{ key }} </th>
+                    <th> {{ value }}</th>
+                </tr>
+                {% endfor %}
+            {% endif %}
+            </tbody>
+            </table>
+    </div>
+</div>
+
+<div class="button-summary">
+
+<button type="submit" class="btn btn-primary" id="submit-btn" onclick="showResults()">
+    Calculate
+</button>
+
+<div id="errorDiv" role="alert" style="display:none"></div>
+
+
+<div class = "summary" id="summary" data-aos = "fade-in">
+    <h3>
+        Shrinkage Values
+    </h3>
+    <br>
+
+    <div class = "shrink_3" id="summary values">
+        <table class="dataframe">
+            <thead>
+                <tr>
+                    <th>Calculated Parameters:</th>
+                    <th> Results:</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if summary_dict is defined %}
+                {% for key, value in summary_dict.items() %}
+                <tr>
+                    <th> {{ key }} </th>
+                    <th> {{ value }}</th>
+                </tr>
+                {% endfor %}
+            {% endif %}
+            </tbody>
+            </table>
+    </div>
+</div>  
+
+</div>

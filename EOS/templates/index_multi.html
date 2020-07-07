@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html >
+
+<head> 
+
+    <meta charset="UTF-8">
+    <meta name = "viewport" content="width=device-width, inital-scale = 1.0">
+    <meta http-equiv = "X-UA-Compatible" content= "ie=edge">
+    <title>Phase Calculator</title>
+
+    <link rel="icon" type = "image/gif/png" href="https://drive.google.com/uc?id=1dLHjkWz85HeuGj76ciNmqml8TxOAcsS-">
+    <!-- <link rel = "stylesheet" href = 'style.css'>   only use when testing html-->
+    <link rel = "stylesheet" type = "text/css" href="{{ url_for('EOS_app.static', filename='styleMulti.css')}}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/26fb797609.js" crossorigin="anonymous"></script>
+    <script src="{{ url_for('EOS_app.static', filename='multiSep.js')}}"> </script>
+
+
+</head>
+
+<body>
+
+    <!-- Nav Start -->
+    <nav>
+        <div class = "logo">
+            <img src = "https://drive.google.com/uc?id=1dLHjkWz85HeuGj76ciNmqml8TxOAcsS-", style="width: 50px; height: 50px;">
+            <h4>   SureSim </h4>
+
+        </div>
+        <ul class = "nav-links"> 
+            <li>  <a href = "/"> Home </a>  </li>
+            <li>  <a href = "/"> Separator Simulator </a> </li>
+            <li>  <a href = "/"> Scaling Calcuator </a> </li>
+            <li>  <a href = "/"> Shrinkage Calculator </a> </li>
+            <li>  <a href = "/"> Decline Curve Model </a> </li>
+        </ul>
+
+        <div class="mobile">
+            <div class = "line1"></div>
+            <div class = "line1"></div>
+            <div class = "line3"></div>
+        </div>
+    </nav>
+                        
+                        
+
+    <div class = "head" id="title-head">
+        <h1>
+            Separator Simulator
+        </h1>
+    </div>
+
+
+    <form action="{{ url_for('EOS_app.home')}}" method="post" id="input-form">
+
+
+    <div class="initial-inputs" id="initial-input-div">
+        <div class='select-stage'>
+            <h3> Select Number of Separators/Stages: </h3>
+            <input type="radio" id = "stage1" class="stage" name="stage" value="1" onclick = "showSep1()"> 1
+            <input type="radio" id = "stage2" class="stage" name="stage" value="2" onclick = "showSep2()"> 2
+            <input type="radio" id = "stage3" class="stage" name="stage" value="3" onclick = "showSep3()"> 3
+        </div>
+
+        <div class='select-units'>
+            <h3> Select Units: </h3>
+            <input type="Radio" class="units" name="units" value="LV"> LV%
+            <input type="Radio" class="units" name="units" value="Mol"> Mol%
+        </div>
+    </div>
+
+    <div class = "note" id="note1">
+        <p>
+            *Click on separators to enter values.
+        </p>
+    </div>
+
+
+
+
+
+
+
+    <div class="table2-input" id="table2-input" style="display:none">
+        <div class = "exit-btn-holder">
+            <button type="button" id="exit-2" class="exit-button" onclick="exitBlur2()"> X </button>
+        </div>
+        <div class = "table-holder">
+        <table class="table1" id = "table2">
+            <thead>
+                <tr>
+                    <th>Input Values Below:</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" id="P2" name="P2" placeholder=" Stage 2 Pressure (PSIG)"/></td>
+
+                </tr>
+                <tr>
+                    <td><input type="text" id="T2" name="T2" placeholder="Stage 2 Temperature (F)"/></td>
+
+                </tr>                                                  
+            </tbody>
+        </table>
+            <button type="button" id="sep2-btn" class="btn btn-primary" onclick="exitBlur2()"> Enter </button>
+        </div>
+    </div>
+
+
+    <div class="table3-input" id="table3-input" style="display:none">
+        <div class = "exit-btn-holder">
+            <button type="button" id="exit-3" class ="exit-button" onclick="exitBlur3()"> X </button>
+        </div>
+            <div class = "table-holder">
+        <table class="table1" id="table3">
+            <thead>
+                <tr>
+                    <th>Input Values Below:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" id="P3" name="P3" placeholder="Stage 3 Pressure (PSIG)"/></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="T3" name="T3" placeholder="Stage 3 Temperature (F)"/></td>
+                </tr>                                                  
+            </tbody>
+        </table>
+        <button type="button" id="sep2-btn" class="btn btn-primary" onclick="exitBlur3()"> Enter </button>
+        </div>
+    </div>
+        
+        <div class = "input">
+            <div class="table1-input" id="table1-input" style="display:none">
+                <button type="button" id="exit-1" class="exit-button" onclick="exitBlur1()"> X </button>
+                <h2>
+                    Separator Input
+                </h2> 
+
+                <table class="table1">
+                <thead>
+                    <tr>
+                        <th>Input Values Below:</th>
+                        <th>Recomended Value Ranges:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" id= "id" name="id" placeholder="Sample Name" required="required" /></td>
+                        <td>200 Characters Max</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="SG" name="SG" placeholder=".7" required="required" /></td>
+                        <td>Specific Gravity: 0.7 - 0.8</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="P" name="P" placeholder="150" required="required" /></td>
+                        <td>Pressure (PSIG): 0.0 - 1200</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="T" name="T" placeholder="70" required="required" /></td>
+                        <td>Temperature (F): 0.0 - 500</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="C7_plus_SG" name="C7_plus_SG" placeholder=".79" required="required" /></td>
+                        <td>C7+ SG: 0.7 - 0.85</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="C7_plus_MW" name="C7_plus_MW" placeholder="180" required="required" /></td>
+                        <td>C7+ MW: 100-200</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="C1" name="C1" placeholder="1" required="required" /></td>
+                        <td>C1: 0.0 - 5.0</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="C2" name="C2" placeholder="1" required="required" /></td>
+                        <td>C2: 0.0 - 5.0</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="C3" name="C3" placeholder="1" required="required" /></td>
+                        <td>C3: 0.0 - 8.0</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="iC4" name="iC4" placeholder="1" required="required" /></td>
+                        <td>iC4: 0.0 - 5.0</td>
+                    </tr> 
+                    <tr>
+                        <td><input type="text" id="C4" name="C4" placeholder="1" required="required" /></td>
+                        <td>C4: 0.0 - 8.0</td>
+                    </tr>   
+                    <tr>
+                        <td><input type="text" id="iC5" name="iC5" placeholder="1" required="required" /></td>
+                        <td>iC5: 0.0 - 8.0</td>
+                    </tr>       
+                    <tr>
+                        <td><input type="text" id="C5" name="C5" placeholder="1" required="required" /></td>
+                        <td>C5: 0.0 - 8.0</td>
+                    </tr> 
+                    <tr>
+                        <td><input type="text" id="C6" name="C6" placeholder="8" required="required" /></td>
+                        <td>C6: 1.0 - 15.0</td>
+                    </tr>     
+                    <tr>
+                        <td><input type="text" id="C7" name="C7" placeholder="70" required="required" /></td>
+                        <td>C7: 65.0 - 85.0</td>
+                    </tr>      
+                    <tr>
+                        <td><input type="text" id="CO2" name="CO2" placeholder="0.01" required="required" /></td>
+                        <td>CO2: 0.0 - 0.5</td>
+                    </tr>   
+                    <tr>
+                        <td><input type="text" id="N2" name="N2" placeholder="0.01" required="required" /></td>
+                        <td>N2: 0.0 - 0.5</td>
+                    </tr>                                                      
+                </tbody>
+                </table>
+                <button type="button" id="sep2-btn" class="btn btn-primary" onclick="exitBlur1()"> Enter </button>
+            </div>
+
+
+         <div class = "container" id="main">
+
+                    <div class="all-gas-outputs">
+                        <div class = 'gas-out' id="gas-out1">
+                            <h2>
+                                Gas Output
+                            </h2>
+                            {{ n1_vapor }}
+                        </div>
+                        <div class = 'gas-out' id="gas-out2">
+                            <h2>
+                                Gas Output
+                            </h2>
+                            {{ n2_vapor | safe }}
+                        </div>
+                        <div class = 'gas-out' id="gas-out3">
+                            <h2>
+                                Gas Output
+                            </h2>
+                            {{ n3_vapor | safe }}
+                        </div>
+                    </div>
+
+
+                    <div class = "separator-images">
+                        <div class = 'sep1' id ="sep1">
+                            <!-- separator picture-->
+                            <img src="https://drive.google.com/uc?id=1CD3rk8tvvQLsi9tYNMtLvN1TC7MPdrQq", style="width: 150px; height: 450px;" onclick="showInput1()"> 
+                        </div>
+    
+    
+    
+    
+                        <div class="separator-2" id="separator-2">
+                            <div class='sep2' id="sep2">
+                                <!-- separator picture-->
+                                <img src="https://drive.google.com/uc?id=1CD3rk8tvvQLsi9tYNMtLvN1TC7MPdrQq", style="width: 150px; height: 450px;" id="sep2" onclick="showInput2()"> 
+                            </div>
+    
+                        </div>
+    
+                        <div class="separator-3" id="separator-3">
+                            <div class='sep3' id="sep3">
+                                <!-- separator picture-->
+                                <img src="https://drive.google.com/uc?id=1CD3rk8tvvQLsi9tYNMtLvN1TC7MPdrQq", style="width: 150px; height: 450px;" id="sep3" onclick="showInput3()"> 
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="all-oil-output" id="all-oil-out">
+                        <div class = 'oil-out' id="oil-out1"> 
+                            <h2>
+                                Oil Output
+                            </h2>
+                            {{ n1_liquid }}
+                        </div>
+                        <div class = 'oil-out' id="oil-out2"> 
+                            <h2>
+                                Oil Output
+                            </h2>
+                            {{ n2_liquid | safe }}
+                        </div>
+                        <div class = 'oil-out' id="oil-out3"> 
+                            <h2>
+                                Oil Output
+                            </h2>
+                            {{ n3_liquid | safe }}
+                        </div>
+                    </div>
+
+
+
+
+
+                <button type="submit" class="btn btn-primary" id="submit-btn" onclick="showResults()">
+                    Calculate
+                </button>
+
+            <div id="errorDiv" role="alert" style="display:none"></div>
+
+                <div class = "summary" id="summary" data-aos = "fade-in">
+                    <h3>
+                        Shrinkage Values
+                    </h3>
+                    <br>
+            
+                    <div class = "shrink_3" id="summary values">
+                        {{ table3 | safe }}
+                    </div>
+                </div>   
+
+        </div>
+
+         </form>
+
+        </div>
+
+
+
+    <div class = "Description" data-aos = "fade-in">
+    <h3> Description </h3>
+        <p> 
+        This Model uses a feed forward neural network to tune the Volume Translated Peng-Robinson (VTPR) Equation of state (EOS)
+        based on measured data to find shrinkage. This has shown to be more accurate than using either the VTPR-EOS or 
+        neural network alone. An example of the neural network archetecture can be seen below:
+        </p>
+
+        <!-- NN picture-->
+        <img src="https://lh3.googleusercontent.com/6vFh7mhJ57wbUbsN442jBBZiCzzRck3O0I6Yl7W5awpikeVvc9vyRQgoqKISAYNtV80KKR7xosNQ23M92_e8NEfr_G5a_KsG7uKj9FcDoJjkMSRJ_jIr7c3iZrjmbMmpNpHgEsZKLkVVMLvlYEjMYt8EFM5jHmJt_D4G_qcEnqai1z5h67a0SBP70A5TL1m6ppF3nGw-Y4kclAINPX98GZEkVzq4DPoVh7Nr31VCHoMNuxr6afrBLb2ZRfQ4yQMzFyE0U65FvNjrtUbfSD0wCHXt7uC9F52XOpau3Dkwppx4726CKDEwaoaLSvX7ZEntVE_x3uO1LE-0VUo5H4wf1YSLFrbckFJzrrgg6bzefY-YzjMn8k0iNTgbO-8zE4PuAmn0gzObCy_OgyS_-7-rpRCW53JpyF23Cpnd4z2san-fvMkYv3-d0_zAm-EJFD1zsso6ZJTjSPgJyTd54Q8W877jEVeZJXlDvjHo4IsWWIfxc7jMP5VCZFq_d6upuMsrHfEYQJR2vfqY-psXAcLRHsGaq8SzU4hK8T75fNuLb1m7_aqi7DZ2qS4UNHBBQu0FcqAB7SaKOY2FKdbsmoZI5kP_95UbaVwzWkORHq18nLa-LVM-saWN35EJ5Nsfwj8dXBrX2iGVM7gQODbmigMnevo9hh6oWqGaag31JRD3L_27aWacyEVhQtWwKEVVt4PvTauNFGvJD9FSGXPhuQzKC5-f6XeMleGm_6GOvRo7MeZodEa6cZxjCG0=w1383-h778-no", style="width: 700px; height: 350px;">
+
+        <p> 
+        The nerual network usued for this model consists of three hidden layers made of 40, 5, and 5 neurons respectively
+        with the VTPR EOS input added as a wide connection in the last layer. Data for this model was taken from various
+        locations in the United States, mainly the DJ-Basin and the Permian. The model has been trained on over 7,000 
+        samples and achives a mean absolute error (MAE) of 0.0148 and a root mean sqaured error (RMSE) of 0.0242
+        on the validation dataset. The accuracy of the dataset is shown below.
+        </p>
+        
+        <!-- Statistics picture-->
+        <img src="https://drive.google.com/uc?id=1DE_r_dxiCAOt9TK7KACeuH2AUF1n7WKz">
+        <!-- https://drive.google.com/file/d/1DE_r_dxiCAOt9TK7KACeuH2AUF1n7WKz/view?usp=sharing -->
+    </div>  
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+
+</body>
+
+
+<footer>
+    <p>Authors: Preston Blackburn, Ben Bagby<br>
+        Email us with any questions at: 
+    <a href="preston.blackburn@spl-inc.com"> preston.blackburn@spl-inc.com</a>
+    or
+    <a href="ben.bagby@spl-inc.com"> ben.bagby@spl-inc.com </a>
+</p>
+
+</footer>
+
+
+</html>
+
